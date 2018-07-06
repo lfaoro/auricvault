@@ -15,7 +15,7 @@ go get github.com/lfaoro/auricvault
 ```bash
 # Provide a .env file with the following variables or export them.
 AURIC_URL="https://vault01.auricsystems.com/vault/v2/"
-AURIC_URL="https://vault02.auricsystems.com/vault/v2/"
+AURIC_URL2="https://vault02.auricsystems.com/vault/v2/" # optional
 AURIC_CONFIGURATION=""
 AURIC_MTID=""
 AURIC_MTID_SECRET=""
