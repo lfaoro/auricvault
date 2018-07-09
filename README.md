@@ -3,8 +3,8 @@
 Wraps the most used AuricVault methods into a simple to use API.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![Go Doc](https://img.shields.io/badge/go%20doc-read-blue.svg)](https://godoc.org/github.com/lfaoro/auricvault)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lfaoro/creditcard)](https://goreportcard.com/report/github.com/lfaoro/auricvault)
+[![Go Doc](https://img.shields.io/badge/go%20doc-read-blue.svg?style=flat)](https://godoc.org/github.com/lfaoro/auricvault)
 
 ## Installation
 ```bash
