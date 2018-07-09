@@ -11,13 +11,11 @@ If no token is specified, one will be auto-generated.
 */
 func (v *Vault) Encrypt(data, token string) (string, error) {
 	v.request.Method = "encrypt"
-	v.request.ID = 1
 	if token != "" {
 		v.request.Params[0].Token = token
 	} else {
 		v.request.Params[0].Last4 = ""
 	}
-	v.request.Params[0].UtcTimestamp = getTime()
 	v.request.Params[0].PlaintextValue = data
 	res, err := v.doRequest()
 	if err != nil {
@@ -29,9 +27,7 @@ func (v *Vault) Encrypt(data, token string) (string, error) {
 // ReEncrypt submit new plaintext data to be encrypted for an existing token.
 func (v *Vault) ReEncrypt(data, token string) (string, error) {
 	v.request.Method = "reencrypt"
-	v.request.ID = 1
 	v.request.Params[0].Token = token
-	v.request.Params[0].UtcTimestamp = getTime()
 	v.request.Params[0].PlaintextValue = data
 	res, err := v.doRequest()
 	if err != nil {
@@ -43,8 +39,6 @@ func (v *Vault) ReEncrypt(data, token string) (string, error) {
 // Decrypt given a token retrieves the decrypted plaintext.
 func (v *Vault) Decrypt(token string) (data string, err error) {
 	v.request.Method = "decrypt"
-	v.request.ID = 1
-	v.request.Params[0].UtcTimestamp = getTime()
 	v.request.Params[0].Token = token
 	res, err := v.doRequest()
 	if err != nil {

@@ -62,7 +62,10 @@ func getTime() string {
 	return fmt.Sprintf("%v", time.Now().Unix())
 }
 
-func (v *Vault) doRequest() (*Response, error) {
+func (v *Vault) doRequest() (response *Response, err error) {
+	v.request.ID = 1
+	v.request.Params[0].UtcTimestamp = getTime()
+
 	body, err := json.Marshal(v.request)
 	if err != nil {
 		return nil, err
@@ -82,12 +85,11 @@ func (v *Vault) doRequest() (*Response, error) {
 		return nil, err
 	}
 	log.Debug("response body: ", string(d))
-	var response Response
 	if err = json.Unmarshal(d, &response); err != nil {
 		return nil, err
 	}
 	if response.Error != "" {
 		return nil, fmt.Errorf("auric error: %v", response.Error)
 	}
-	return &response, nil
+	return response, nil
 }
