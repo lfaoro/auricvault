@@ -4,10 +4,10 @@ package auricvault
 //
 // https://docs.auricvault.com/api-docs/#_token_management_methods
 
-// DeleteToken returns the same message for both a not-found token and a token that exists,
+// Delete returns the same message for both a not-found token and a token that exists,
 // but to which you do not have permission. This ensures the existence of the token does not
 // leakto a third party that should not have access to the data.
-func (v *Vault) DeleteToken(token string) error {
+func (v *Vault) Delete(token string) error {
 	v.request.Method = "delete_token"
 	v.request.Params[0].Token = token
 	_, err := v.doRequest()
@@ -17,9 +17,9 @@ func (v *Vault) DeleteToken(token string) error {
 	return nil
 }
 
-// TokenInfo retrieves information about a token. Useful for finding out if a token exists
+// Info retrieves information about a token. Useful for finding out if a token exists
 // in the system without needing to retrieve the actual data.
-func (v *Vault) TokenInfo(token string) (*Result, error) {
+func (v *Vault) Info(token string) (*Result, error) {
 	v.request.Method = "token_info"
 	v.request.Params[0].Token = token
 	res, err := v.doRequest()
