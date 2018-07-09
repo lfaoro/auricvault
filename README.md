@@ -1,6 +1,6 @@
 # AuricVault API library
 
-Wraps the most used AuricVault methods into a simple to use API.
+Simple Go-API to store sensitive data using the AuricVault PCI/HIPAA compliant service.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lfaoro/creditcard)](https://goreportcard.com/report/github.com/lfaoro/auricvault)
