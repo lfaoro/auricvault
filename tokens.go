@@ -34,4 +34,12 @@ func (v *Vault) TokenInfo(token string) (*Result, error) {
 // the retention period to the current date/time.
 //
 // Touching a non-existing token results in an error message and lastActionSucceeded of 0.
-func (v *Vault) TouchToken() {}
+func (v *Vault) TouchToken(token string) (*Result, error) {
+	v.request.Method = "touch_token"
+	v.request.Params[0].Token = token
+	res, err := v.doRequest()
+	if err != nil {
+		return nil, err
+	}
+	return &res.Result, nil
+}
