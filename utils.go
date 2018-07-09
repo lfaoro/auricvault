@@ -80,6 +80,7 @@ func (v *Vault) doRequest() (response *Response, err error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to perform http call: %v", err)
 	}
+	defer res.Body.Close()
 	d, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, fmt.Errorf("unable to read response body: %v", err)
