@@ -29,12 +29,12 @@ func (v *Vault) Info(token string) (*Result, error) {
 	return &res.Result, nil
 }
 
-// TouchToken method is similar to the TokenInfo method except that it does update
+// Touch method is similar to the TokenInfo method except that it does update
 // the token last accessed date time stamp. This method is used to reset the start of
 // the retention period to the current date/time.
 //
 // Touching a non-existing token results in an error message and lastActionSucceeded of 0.
-func (v *Vault) TouchToken(token string) (*Result, error) {
+func (v *Vault) Touch(token string) (*Result, error) {
 	v.request.Method = "touch_token"
 	v.request.Params[0].Token = token
 	res, err := v.doRequest()
