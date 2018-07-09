@@ -68,28 +68,28 @@ func (v *Vault) doRequest() (response *Response, err error) {
 
 	body, err := json.Marshal(v.request)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("unable to marshall the request body: %v", err)
 	}
 	log.Debug("request: ", string(body))
 	req, err := http.NewRequest("POST", v.url, bytes.NewBuffer(body))
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("unable to create request: %v", err)
 	}
 	req.Header = setHeaders(body)
 	res, err := v.client.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("unable to perform http call: %v", err)
 	}
 	d, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("unable to read response body: %v", err)
 	}
 	log.Debug("response body: ", string(d))
 	if err = json.Unmarshal(d, &response); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("unable parse response body: %v", err)
 	}
 	if response.Error != "" {
-		return nil, fmt.Errorf("auric error: %v", response.Error)
+		return nil, fmt.Errorf("auric's message: %v", response.Error)
 	}
 	return response, nil
 }
