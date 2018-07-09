@@ -29,10 +29,10 @@ type Vault struct {
 	mtid       string
 	mtidSecret string
 	client     *http.Client
-	request    Request
+	request    request
 }
 
-type Request struct {
+type request struct {
 	ID     int      `json:"id,omitempty"`
 	Method string   `json:"method,omitempty"`
 	Params []Params `json:"params,omitempty"`
@@ -84,7 +84,7 @@ func New(retention Retention) *Vault {
 		url:        os.Getenv("AURIC_URL"),
 		mtidSecret: os.Getenv("AURIC_MTID_SECRET"),
 		client:     &http.Client{},
-		request: Request{
+		request: request{
 			ID:     0,
 			Method: "",
 			// Default params, used in all calls
