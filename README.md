@@ -8,21 +8,29 @@ Wraps the most used AuricVault methods into a simple to use API.
 
 ## Installation
 ```bash
-go get github.com/lfaoro/auricvault
+$ go get github.com/lfaoro/auricvault
+```
+
+```go
+import "github.com/lfaoro/auricvault"
 ```
 
 ## Quick start
 ```bash
-# Provide a .env file with the following variables or export them.
+# Provide a .env file in your project with the following variables or export them.
+# the .env file will be automatically parsed.
+$ cat > .env << EOF
 AURIC_URL="https://vault01.auricsystems.com/vault/v2/"
 AURIC_URL2="https://vault02.auricsystems.com/vault/v2/" # optional
 AURIC_CONFIGURATION=""
 AURIC_MTID=""
 AURIC_MTID_SECRET=""
 AURIC_SEGMENT=""
+EOF
 ```
 
 ```go
+// Instance a new Vault, choose the retention period
 vault := auricvault.New(auricvault.Forever)
 
 // If you want to see Debug information
@@ -44,7 +52,7 @@ if err != nil {
 }
 fmt.Println("token: ", token)
 
-// Retrieve your data from the vault using the token
+// Retrieve the string data from the vault using the token
 data, err := vault.Decrypt("khR8pew41q0URCxtivea")
 if err != nil {
     log.Fatal(err)
