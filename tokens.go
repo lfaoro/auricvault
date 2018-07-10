@@ -4,9 +4,8 @@ package auricvault
 //
 // https://docs.auricvault.com/api-docs/#_token_management_methods
 
-// Delete returns the same message for both a not-found token and a token that exists,
-// but to which you do not have permission. This ensures the existence of the token does not
-// leakto a third party that should not have access to the data.
+// Delete removes the token and its encrypted value from the Auric
+// database.
 func (v *Vault) Delete(token string) error {
 	v.request.Method = "delete_token"
 	v.request.Params[0].Token = token

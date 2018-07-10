@@ -8,7 +8,7 @@ Simple Go-API used to store sensitive data using the AuricVault PCI/HIPAA compli
 
 ## Installation
 ```bash
-$ go get github.com/lfaoro/auricvault
+$ go get -u github.com/lfaoro/auricvault
 ```
 
 ```go

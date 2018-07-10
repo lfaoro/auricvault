@@ -9,6 +9,7 @@ import (
 
 var log = logrus.New()
 
+// SetDebug enables the log.Debug statements throughout this library.
 func SetDebug() {
 	log.SetLevel(logrus.DebugLevel)
 }
@@ -24,6 +25,7 @@ func init() {
 // https://docs.auricvault.com/api-docs/
 //
 
+// Vault is a type that implents the AuricVault methods.
 type Vault struct {
 	url        string
 	mtid       string
@@ -35,10 +37,10 @@ type Vault struct {
 type request struct {
 	ID     int      `json:"id,omitempty"`
 	Method string   `json:"method,omitempty"`
-	Params []Params `json:"params,omitempty"`
+	Params []params `json:"params,omitempty"`
 }
 
-type Params struct {
+type params struct {
 	ConfigurationID string    `json:"configurationId,omitempty"`
 	Last4           string    `json:"last4,omitempty"`
 	Mtid            string    `json:"mtid,omitempty"`
@@ -49,12 +51,14 @@ type Params struct {
 	Token           string    `json:"token,omitempty"`
 }
 
+// Response structures the data received from the AuricVault API.
 type Response struct {
 	ID     int    `json:"id,omitempty"`
 	Result Result `json:"result,omitempty"`
 	Error  string `json:"error,omitempty"`
 }
 
+// Result structures the data received from the AuricVault API.
 type Result struct {
 	Version             string `json:"version,omitempty"`
 	LastActionSucceeded int    `json:"lastActionSucceeded,omitempty"`
@@ -79,6 +83,7 @@ const (
 	Forever Retention = "forever"
 )
 
+// New returns a pointer to a Vault type.
 func New(retention Retention) *Vault {
 	return &Vault{
 		url:        os.Getenv("AURIC_URL"),
@@ -88,7 +93,7 @@ func New(retention Retention) *Vault {
 			ID:     0,
 			Method: "",
 			// Default params, used in all calls
-			Params: []Params{
+			Params: []params{
 				{
 					ConfigurationID: os.Getenv("AURIC_CONFIGURATION"),
 					Mtid:            os.Getenv("AURIC_MTID"),
