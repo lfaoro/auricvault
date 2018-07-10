@@ -60,8 +60,11 @@ if err != nil {
 fmt.Println(data)
 ```
 
+## Disclaimer
+Some AuricVault API features and settings have been omitted in favor of simplicity. If you require any of the omitted features implemented, please open an [issue](https://github.com/lfaoro/auricvault/issues/new).
+
 # Contibuting
-> Any help and suggestions are very welcome and appreciated.
+> Any help and suggestions are very welcome and appreciated. Start by opening an [issue](https://github.com/lfaoro/auricvault/issues/new).
 
 - Fork the project
 - Create your feature branch `git checkout -b my-new-feature`
