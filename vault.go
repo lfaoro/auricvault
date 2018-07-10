@@ -83,7 +83,7 @@ const (
 	Forever Retention = "forever"
 )
 
-// New returns a pointer to a Vault type.
+// New returns a configured and ready to use Vault.
 func New(retention Retention) *Vault {
 	return &Vault{
 		url:        os.Getenv("AURIC_URL"),
