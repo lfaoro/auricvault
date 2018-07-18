@@ -25,6 +25,14 @@ func init() {
 // https://docs.auricvault.com/api-docs/
 //
 
+type Encrypter interface {
+	Encrypt()
+	Decrypt()
+	Delete()
+	Info()
+	Touch()
+}
+
 // Vault is a type that implents the AuricVault methods.
 type Vault struct {
 	url        string

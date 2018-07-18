@@ -13,13 +13,15 @@ import (
 	"strings"
 	"time"
 
+	"github.com/pkg/errors"
+
 	"github.com/joho/godotenv"
 )
 
 // LoadEnv loads .env file variables.
 func loadEnvVars() error {
 	if err := godotenv.Load(); err != nil {
-		return fmt.Errorf("Unable to load environment variables: %v", err)
+		errors.Wrap(err, "unable to load environment variables")
 	}
 	envVars := []string{
 		"AURIC_URL",
@@ -31,7 +33,7 @@ func loadEnvVars() error {
 	for _, s := range envVars {
 		_, yes := os.LookupEnv(s)
 		if !yes {
-			return fmt.Errorf("Missing required environment variable: %v", s)
+			return errors.Errorf("missing required environment variable: %v", s)
 		}
 	}
 	return nil

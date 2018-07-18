@@ -24,18 +24,6 @@ func (v *Vault) Encrypt(data, token string) (string, error) {
 	return res.Result.Token, nil
 }
 
-// ReEncrypt submit new plaintext data to be encrypted for an existing token.
-func (v *Vault) ReEncrypt(data, token string) (string, error) {
-	v.request.Method = "reencrypt"
-	v.request.Params[0].Token = token
-	v.request.Params[0].PlaintextValue = data
-	res, err := v.doRequest()
-	if err != nil {
-		return "", err
-	}
-	return res.Result.Token, nil
-}
-
 // Decrypt given a token retrieves the decrypted plaintext.
 func (v *Vault) Decrypt(token string) (data string, err error) {
 	v.request.Method = "decrypt"
@@ -44,5 +32,6 @@ func (v *Vault) Decrypt(token string) (data string, err error) {
 	if err != nil {
 		return "", err
 	}
+	log.Debug("response: ", res)
 	return res.Result.PlaintextValue, nil
 }
